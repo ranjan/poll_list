@@ -3,6 +3,7 @@ from django.conf.urls.defaults import patterns, include, url
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
+from polls.views import login,dashboard,error
 
 urlpatterns = patterns('',
     # Examples:
@@ -15,6 +16,10 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
      url(r'^polls/', include('polls.urls', namespace="polls")),
      url(r'^admin/', include(admin.site.urls)),
+     ('^login/$', login),
+     ('^dashboard/$', dashboard),
+     ('^error/$', error),
+     url(r'', include('social_auth.urls')),
 )
 
 

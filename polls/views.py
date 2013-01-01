@@ -2,12 +2,22 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from polls.models import Poll, Choice
+import logging, traceback, pprint
 
 
 def index(request):
     poll_list = Poll.objects.all().order_by('-pub_date')[:5]
     context = {'poll_list': poll_list}
     return render(request, 'polls/index.html', context)
+
+def login(request):
+  return render(request, 'polls/login.html')
+
+def dashboard(request):
+  return render(request, 'polls/dashboard.html')
+
+def error(request):
+  return render(request, 'polls/error.html')
 
 def detail(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
